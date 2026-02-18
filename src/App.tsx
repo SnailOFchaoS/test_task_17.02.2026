@@ -1,8 +1,11 @@
+import { AppProvider } from './store';
 import { MainPage } from './pages';
 
 function App() {
   return (
-    <MainPage/>
+    <AppProvider>
+      <MainPage />
+    </AppProvider>
   );
 }
 

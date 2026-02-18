@@ -25,8 +25,8 @@ module.exports = {
               modules: {
                 mode: 'local',
                 localIdentName: '[name]__[local]___[hash:base64:5]',
-                namedExport: false,        // v7: иначе default export не создаётся
-                exportLocalsConvention: 'as-is',
+                namedExport: false,
+                exportLocalsConvention: 'asIs',
               },
               esModule: true,
               import: true,
