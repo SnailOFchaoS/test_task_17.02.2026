@@ -1,6 +1,22 @@
 .container {
-	display: flex;
-	width: 100vw;
-	flex-direction: row;
-	justify-content: center;
+	display: grid;
+	position: relative;
+	grid-template-columns: repeat(24, 1fr);
+	gap: 0;
+	width: 100%;
+	min-height: 100vh;
+	background-color: #F4F5F9;
+
+	.backgroundImage{
+		position: relative;
+	}
+}
+
+@for $i from 1 through 24 {
+	.colSpan#{$i} {
+		grid-column-end: span $i;
+	}
+	.colStart#{$i} {
+		grid-column-start: $i;
+	}
 }

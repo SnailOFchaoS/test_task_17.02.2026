@@ -1,0 +1,67 @@
+$dot-color: rgba(66, 86, 122, 1);
+$dot-background-color: #F4F5F9;
+
+$dot-size-small: 6px * 0.67;
+$dot-size-large: 56px * 0.67;
+
+.container {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: $dot-size-large;
+	height: $dot-size-large;
+}
+
+.rotationWrapper {
+	position: absolute;
+	inset: 0;
+	transform-origin: center;
+	will-change: transform;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+
+	.dot {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: $dot-color;
+		cursor: pointer;
+		transform-origin: center;
+		will-change: transform;
+
+		.dotContent {
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			width: 54px * 0.67;
+			height: 54px * 0.67;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transform-origin: center;
+			transform: scale(0);
+			white-space: nowrap;
+			pointer-events: none;
+			font-size: 20px * 0.67;
+			font-family: 'PT Sans', sans-serif;
+			color: $dot-color;
+			background-color: $dot-background-color;
+			border-radius: 50%;
+			will-change: transform;
+		}
+	}
+	
+	.dotName {
+		position: absolute;
+		font-size: 20px * 0.67;
+		color: $dot-color;
+		font-weight: 700;
+		pointer-events: none;
+		font-family: 'PT Sans', sans-serif;
+	}
+}
+
