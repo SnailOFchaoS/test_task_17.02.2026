@@ -1,0 +1,24 @@
+$text-color: rgba(66, 86, 122, 1);
+
+.container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	max-width: 431px * 0.67;
+	margin-top: 170px * 0.67;
+
+	.coloredLine {
+		width: 5px * 0.67;
+		height: 120px * 0.67;
+		background: linear-gradient(to bottom, #3877EE -10%, #EF5DA8 90%);
+		margin-right: 73px * 0.67;
+	}
+
+	.staticText{
+		font-size: 56px * 0.67;
+		font-weight: 700;
+		line-height: 120%;
+		color: $text-color;
+		font-family: 'PT Sans', sans-serif;
+	}
+}
