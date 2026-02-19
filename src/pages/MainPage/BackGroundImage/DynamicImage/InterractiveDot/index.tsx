@@ -16,7 +16,7 @@ const InterractiveDot = ({ title }: InterractiveDotProps) => {
 	const dotRef = useRef<HTMLDivElement>(null);
 	const contentRef = useRef<HTMLDivElement>(null);
 	const dotNameRef = useRef<HTMLSpanElement>(null);
-	const currentSelectedDot = useRef<number | null>(selectedDot);
+	const currentSelectedDot = useRef<number>(selectedDot);
 	const dotAnimationTimeline = useRef<gsap.core.Timeline | null>(null);
 	const balanceAnimationTimeline = useRef<gsap.core.Timeline | null>(null);
 
@@ -87,10 +87,7 @@ const InterractiveDot = ({ title }: InterractiveDotProps) => {
 	}, []);
 
 	useEffect(() => {
-		if (!dotAnimationTimeline.current || selectedDot == null) return;
-		if(currentSelectedDot.current === null) {
-			currentSelectedDot.current = selectedDot;
-		};
+		if (!dotAnimationTimeline.current) return;
 
 		if(index !== selectedDot && currentSelectedDot.current === index) {
 			dotAnimationTimeline.current.reverse();
