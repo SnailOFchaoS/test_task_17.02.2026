@@ -1,5 +1,6 @@
 import { StaticImage, DynamicImage } from './BackGroundImage';
 import MainPageText from './MainPageText';
+import MainPageCarousel from './MainPageCarousel';
 
 import styles from './MainPage.module.scss';
 
@@ -11,6 +12,7 @@ const MainPage = () => {
 				<StaticImage />
 				<DynamicImage/>
 				<MainPageText/>
+				<MainPageCarousel/>
 			</div>
 		</div>
 	)
