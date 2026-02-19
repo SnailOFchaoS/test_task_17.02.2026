@@ -1,9 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { useAppContext } from '../../../../../store';
 import { TITLES, formatTitleNumber } from '../../../../../constants';
-
-import {ClickableButton} from '../../../../../components';
+import { useDebounce } from '../../../../../hooks';
+import { ClickableButton } from '../../../../../components';
 
 import styles from './TitleSwitcher.module.scss';
 
@@ -11,26 +11,23 @@ const TOTAL = TITLES.length;
 
 const TitleSwitcher = () => {
 	const { selectedDot, setSelectedDot } = useAppContext();
-	const [currentSelect, setCurrentSelect] = useState<number>(1);
-	
+
 	const currentTitleNumber = formatTitleNumber(
 		TITLES.find((title) => title.id === selectedDot)?.number
 	);
 
 	const goPrev = useCallback(() => {
-		if(currentSelect === 1) return;
-
-		setSelectedDot(TITLES[currentSelect - 2].id);
-		setCurrentSelect(prev => prev - 1);
-	}, [selectedDot])
+		if (selectedDot <= 0) return;
+		setSelectedDot(selectedDot - 1);
+	}, [selectedDot, setSelectedDot]);
 
 	const goNext = useCallback(() => {
-		if(currentSelect === TOTAL) return;
+		if (selectedDot >= TOTAL - 1) return;
+		setSelectedDot(selectedDot + 1);
+	}, [selectedDot, setSelectedDot]);
 
-		setSelectedDot(TITLES[currentSelect].id);
-		setCurrentSelect(prev => prev + 1);
-	}, [selectedDot])
-
+	const debounsedGoPrev = useDebounce(goPrev, 1301);
+	const debounsedGoNext = useDebounce(goNext, 1301);
 
 	return (
 		<div className={styles.container}>
@@ -39,15 +36,15 @@ const TitleSwitcher = () => {
 			</span>
 			<div className={styles.buttons}>
 				<ClickableButton
-					onClick={goPrev}
-					disabled={currentSelect === 1}
+					onClick={debounsedGoPrev}
+					disabled={selectedDot === 0}
 					direction="prev"
 					ariaLabel="Предыдущий"
 					size={50 * 0.67}
 				/>
 				<ClickableButton
-					onClick={goNext}
-					disabled={currentSelect === TOTAL}
+					onClick={debounsedGoNext}
+					disabled={selectedDot === TOTAL - 1}
 					direction="next"
 					ariaLabel="Следующий"
 					size={50 * 0.67}

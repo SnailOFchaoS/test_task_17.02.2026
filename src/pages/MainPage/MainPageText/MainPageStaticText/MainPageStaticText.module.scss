@@ -1,4 +1,4 @@
-$text-color: rgba(66, 86, 122, 1);
+@use '../../../../constants/styles' as *;
 
 .container {
 	display: flex;
@@ -10,15 +10,15 @@ $text-color: rgba(66, 86, 122, 1);
 	.coloredLine {
 		width: 5px * 0.67;
 		height: 120px * 0.67;
-		background: linear-gradient(to bottom, #3877EE -10%, #EF5DA8 90%);
+		background: linear-gradient(to bottom, $color-accent-hex -10%, $color-accent-pink 90%);
 		margin-right: 73px * 0.67;
 	}
 
-	.staticText{
+	.staticText {
 		font-size: 56px * 0.67;
 		font-weight: 700;
 		line-height: 120%;
-		color: $text-color;
+		color: $color-text-primary;
 		font-family: 'PT Sans', sans-serif;
 	}
 }

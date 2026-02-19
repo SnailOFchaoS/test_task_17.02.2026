@@ -8,9 +8,10 @@ import styles from './InterractiveDot.module.scss';
 
 type InterractiveDotProps = {
 	title: typeof TITLES[number];
+	wheelRotationRef: React.MutableRefObject<number>;
 };
 
-const InterractiveDot = ({ title }: InterractiveDotProps) => {
+const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 	const { selectedDot, setSelectedDot } = useAppContext();
 	const rotationWrapperRef = useRef<HTMLDivElement>(null);
 	const dotRef = useRef<HTMLDivElement>(null);
@@ -18,7 +19,7 @@ const InterractiveDot = ({ title }: InterractiveDotProps) => {
 	const dotNameRef = useRef<HTMLSpanElement>(null);
 	const currentSelectedDot = useRef<number>(selectedDot);
 	const dotAnimationTimeline = useRef<gsap.core.Timeline | null>(null);
-	const balanceAnimationTimeline = useRef<gsap.core.Timeline | null>(null);
+	const textAnimationTimeline = useRef<gsap.core.Timeline | null>(null);
 
 	const index = title.number - 1;
 
@@ -64,7 +65,9 @@ const InterractiveDot = ({ title }: InterractiveDotProps) => {
 				},
 				{ scale: 1,duration: 0.5, ease: 'power2.inOut' },
 				0
-			).fromTo(dotNameRef.current, {
+			)
+			
+		textAnimationTimeline.current = gsap.timeline({ paused: true }).fromTo(dotNameRef.current, {
 				opacity: 0
 			}, {
 				opacity: 1,
@@ -73,35 +76,52 @@ const InterractiveDot = ({ title }: InterractiveDotProps) => {
 				ease: 'power2.inOut'
 			}, 0);
 
-		balanceAnimationTimeline.current = gsap.timeline().to(rotationWrapperRef.current, {
-			rotation: -360,
-			duration: 60,
-			repeat: -1,
-			ease: 'linear',
-		});
-
 		return () => {
 			dotAnimationTimeline.current?.kill();
-			balanceAnimationTimeline.current?.kill();
+			textAnimationTimeline.current?.kill();
 		};
 	}, []);
 
 	useEffect(() => {
-		if (!dotAnimationTimeline.current) return;
+		const wrapper = rotationWrapperRef.current;
+		if (!wrapper) return;
+
+		const ticker = () => {
+			gsap.set(wrapper, { rotation: -wheelRotationRef.current });
+		};
+
+		gsap.ticker.add(ticker);
+		return () => gsap.ticker.remove(ticker);
+	}, []);
+
+	useEffect(() => {
+		if (!dotAnimationTimeline.current || !textAnimationTimeline.current) return;
 
 		if(index !== selectedDot && currentSelectedDot.current === index) {
 			dotAnimationTimeline.current.reverse();
+			textAnimationTimeline.current.reverse();
 			currentSelectedDot.current = selectedDot;
 			return;
 		};
 
 		if(index === selectedDot) {
-			dotAnimationTimeline.current.restart().play();
+			dotAnimationTimeline.current.play();
+			textAnimationTimeline.current.play();
 			currentSelectedDot.current = selectedDot;
 			return;
 		}
 		
 	}, [selectedDot]);
+
+	const handleMouseEnter = useCallback(() => {
+		if (!dotAnimationTimeline.current || selectedDot === title.id) return;
+		dotAnimationTimeline.current.play();
+	}, [selectedDot, title.id]);
+
+	const handleMouseLeave = useCallback(() => {
+		if (!dotAnimationTimeline.current || selectedDot === title.id) return;
+		dotAnimationTimeline.current.reverse();
+	}, [selectedDot, title.id]);
 
 	return (
 		<div
@@ -109,12 +129,14 @@ const InterractiveDot = ({ title }: InterractiveDotProps) => {
 			style={{
 				transform: `translate(-50%, -50%) translate(${x}px, ${y}px)`,
 			}}
+			onClick={handleClick}
+			onMouseEnter={handleMouseEnter}
+			onMouseLeave={handleMouseLeave}
 		>
 			<div ref={rotationWrapperRef} className={styles.rotationWrapper}>
 				<div
 					ref={dotRef}
 					className={styles.dot}
-					onClick={handleClick}
 				>
 					<div ref={contentRef} className={styles.dotContent}>
 						{title.number}

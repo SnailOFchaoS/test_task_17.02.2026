@@ -1,4 +1,4 @@
-$text-color: rgba(66, 86, 122, 1);
+@use '../../../../../constants/styles' as *;
 
 .container {
 	display: flex;
@@ -9,7 +9,7 @@ $text-color: rgba(66, 86, 122, 1);
 	.currentTitle {
 		font-size: 14px * 0.67;
 		font-weight: 400;
-		color: $text-color;
+		color: $color-text-primary;
 		font-family: 'PT Sans', sans-serif;
 	}
 

@@ -1,5 +1,4 @@
-$text-color: rgba(93, 95, 239, 1);
-$second-text-color: rgba(239, 93, 168, 1);
+@use '../../../../../../constants/styles' as *;
 
 .container {
 	display: inline-block;
@@ -27,11 +26,11 @@ $second-text-color: rgba(239, 93, 168, 1);
 	}
 	
 	.letter.firstDate, .chosenLetter.firstDate {
-		color: $text-color;
+		color: $color-date-first;
 	}
-	
+
 	.letter.secondDate, .chosenLetter.secondDate {
-		color: $second-text-color;
+		color: $color-date-second;
 	}
 }
 

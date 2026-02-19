@@ -11,11 +11,14 @@ type ClickableButtonProps = {
 	onClick: () => void;
 	disabled?: boolean;
 	direction: 'prev' | 'next';
-	ariaLabel: string;
+	ariaLabel?: string;
 	size?: number;
+	className?: string;
+	style?: React.CSSProperties;
+	iconSrc?: string;
 };
 
-const ClickableButton = ({ onClick, disabled, direction, ariaLabel, size = DEFAULT_SIZE }: ClickableButtonProps) => {
+const ClickableButton = ({ onClick, disabled, direction, ariaLabel, size = DEFAULT_SIZE, className, style, iconSrc }: ClickableButtonProps) => {
 	const iconClassName = direction === 'next' ? styles.iconNext : styles.icon;
 	const sizePx = `${size}px`;
 	const buttonTimelineRef = useRef<gsap.core.Timeline | null>(null);
@@ -50,15 +53,15 @@ const ClickableButton = ({ onClick, disabled, direction, ariaLabel, size = DEFAU
 		<button
 			ref={buttonRef}
 			type="button"
-			className={styles.button}
+			className={[styles.button, className].filter(Boolean).join(' ')}
 			onClick={onClick}
 			disabled={disabled}
 			aria-label={ariaLabel}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			style={{ '--button-size': sizePx } as React.CSSProperties}
+			style={{ '--button-size': sizePx, ...style } as React.CSSProperties}
 		>
-			<img src={buttonSvg} alt="" className={iconClassName} />
+			<img src={iconSrc ?? buttonSvg} alt="" className={iconClassName} />
 		</button>
 	);
 };

@@ -1,5 +1,7 @@
-$dot-color: rgba(66, 86, 122, 1);
-$dot-background-color: #F4F5F9;
+@use '../../../../../constants/styles' as *;
+
+$dot-color: $color-text-primary;
+$dot-background-color: $color-bg-page;
 
 $dot-size-small: 6px * 0.67;
 $dot-size-large: 56px * 0.67;
@@ -10,6 +12,7 @@ $dot-size-large: 56px * 0.67;
 	top: 50%;
 	width: $dot-size-large;
 	height: $dot-size-large;
+	cursor: pointer;
 }
 
 .rotationWrapper {
