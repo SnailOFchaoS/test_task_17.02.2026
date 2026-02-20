@@ -1,12 +1,8 @@
-@use '../../../../constants/styles' as *;
+@use '../../constants/styles' as *;
 
 .container {
-	position: absolute;
-	@include scaled(bottom, 295px);
-	@include scaled(left, 80px);
 	display: flex;
 	flex-direction: column;
-	pointer-events: auto;
 
 	.currentTitle {
 		@include scaled(font-size, 14px);
@@ -14,11 +10,29 @@
 		color: $color-text-primary;
 		font-family: 'PT Sans', sans-serif;
 	}
-
+	
 	.buttons {
 		display: flex;
 		flex-direction: row;
 		@include scaled(gap, 20px);
 		@include scaled(margin-top, 20px);
 	}
+	
 }
+
+@media (max-width: 768px) {
+
+	.container {
+		.currentTitle {
+			font-size: 14px;
+		}
+	
+		.buttons {
+			gap: 8.33px;
+			margin-top: 10.67px;
+		}
+	}
+
+}
+
+

@@ -1,13 +1,6 @@
-import { createContext, useContext, useState, useMemo, type ReactNode } from 'react';
+import { createContext, useContext, useState, useMemo } from 'react';
 
-type AppContextValue = {
-	selectedDot: number;
-	setSelectedDot: (v: number) => void;
-};
-
-type AppProviderProps = {
-	children: ReactNode;
-};
+import type { AppContextValue, AppProviderProps } from './types';
 
 const AppContext = createContext<AppContextValue | null>(null);
 

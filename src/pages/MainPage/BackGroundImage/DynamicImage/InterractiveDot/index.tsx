@@ -3,14 +3,9 @@ import gsap from 'gsap';
 
 import { useAppContext } from '../../../../../store';
 import { useLaptopScale } from '../../../../../hooks';
-import { RADIUS_BASE, SCALE_CLOSED, CONTENT_OFFSET_X_BASE, TITLES } from '../../../../../constants';
 
+import type { InterractiveDotProps } from './types';
 import styles from './InterractiveDot.module.scss';
-
-type InterractiveDotProps = {
-	title: typeof TITLES[number];
-	wheelRotationRef: React.MutableRefObject<number>;
-};
 
 const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 	const { selectedDot, setSelectedDot } = useAppContext();
@@ -28,8 +23,8 @@ const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 	const [x, y] = useMemo(() => {
 		const angleDeg = (index ?? 0) * 60;
 		const rad = (angleDeg * Math.PI) / 180;
-		const cx = RADIUS_BASE * scale * Math.cos(rad);
-		const cy = RADIUS_BASE * scale * Math.sin(rad);
+		const cx = 265 * scale * Math.cos(rad);
+		const cy = 265 * scale * Math.sin(rad);
 		return [Math.round(cx), Math.round(cy)];
 	}, [index]);
 
@@ -43,14 +38,14 @@ const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 	useEffect(() => {
 		if (!rotationWrapperRef.current || !dotRef.current || !contentRef.current) return;
 
-		gsap.set(dotRef.current, { scale: SCALE_CLOSED });
+		gsap.set(dotRef.current, { scale: 6 / 56 });
 		gsap.set(contentRef.current, { scale: 0 });
 
 		dotAnimationTimeline.current = gsap
 			.timeline({ paused: true }).fromTo(
 				dotRef.current,
 				{ 
-					scale: SCALE_CLOSED, 
+					scale: 6 / 56, 
 					backgroundColor: 'rgba(66, 86, 122, 1)' 
 				},
 				{ 
@@ -74,7 +69,7 @@ const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 			}, {
 				opacity: 1,
 				duration: 0.5,
-				transform: `translateX(${CONTENT_OFFSET_X_BASE * scale}px)`,
+				transform: `translateX(${76 * scale}px)`,
 				ease: 'power2.inOut'
 			}, 0);
 

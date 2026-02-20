@@ -1,0 +1,13 @@
+@use '../../../../../../constants/styles' as *;
+
+.dot{
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: $color-text-primary;
+	opacity: 0.5;
+}
+
+.dot.selected{
+	opacity: 1;
+}

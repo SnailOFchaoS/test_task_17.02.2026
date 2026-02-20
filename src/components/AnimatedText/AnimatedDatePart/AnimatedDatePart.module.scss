@@ -1,4 +1,4 @@
-@use '../../../../../../constants/styles' as *;
+@use '../../../constants/styles' as *;
 
 .wrapper {
 	display: inline;
@@ -7,4 +7,11 @@
 	letter-spacing: -2%;
 	@include scaled(line-height, 160px);
 	font-family: 'PT Sans', sans-serif;
+}
+
+@media (max-width: 768px) {
+	.wrapper {
+		font-size: 56px;
+		line-height: 72px;
+	}
 }

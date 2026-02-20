@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 
-import { useAppContext } from '../../../../../store';
-import { TIMELINES } from '../../../../../constants';
+import { useAppContext } from '../../store';
+import { TIMELINES } from '../../constants';
 import AnimatedDatePart from './AnimatedDatePart';
 
 import styles from './AnimatedText.module.scss';
@@ -46,4 +46,4 @@ const AnimatedText = () => {
 	);
 };
 
-export default AnimatedText;
+export { AnimatedText };

@@ -1,4 +1,4 @@
-@use '../../../../../../constants/styles' as *;
+@use '../../../constants/styles' as *;
 
 .container {
 	display: inline-block;
@@ -24,7 +24,7 @@
 	.chosenLetter {
 		@include scaled(top, -340px);
 	}
-	
+
 	.letter.firstDate, .chosenLetter.firstDate {
 		color: $color-date-first;
 	}
@@ -34,3 +34,17 @@
 	}
 }
 
+@media (max-width: 768px) {
+	.container {
+		height: 72px;
+	
+		.letter, .chosenLetter {
+			font-size: 56px;
+			line-height: 72px;
+		}
+	
+		.chosenLetter {
+			top: -144px;
+		}
+	}
+}

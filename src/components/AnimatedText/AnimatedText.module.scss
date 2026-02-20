@@ -1,10 +1,8 @@
-@use '../../../../../constants/styles' as *;
+@use '../../constants/styles' as *;
 
 .container {
 	display: flex;
 	flex-direction: row;
-	
-	@include scaled(margin-left, 217px);
 
 	.animatedTextLine {
 		display: block;
@@ -20,5 +18,17 @@
 		@include scaled(line-height, 160px);
 		font-family: 'PT Sans', sans-serif;
 		width: 1ch;
+	}
+
+	@media (max-width: 768px) {
+		.animatedTextLine {
+			min-height: 72px;
+			max-height: 72px;
+		}
+
+		.space {
+			font-size: 56px;
+			line-height: 72px;
+		}
 	}
 }

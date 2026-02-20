@@ -1,3 +1,5 @@
+@use '../../../constants/styles' as *;
+
 .container {
 	position: absolute;
 	display: flex;
@@ -8,4 +10,20 @@
 	height: 100%;
 	background-color: transparent;
 	pointer-events: none;
+}
+
+.titleSwitcherWrapper {
+	position: absolute;
+	@include scaled(bottom, 295px);
+	@include scaled(left, 80px);
+	display: flex;
+	flex-direction: column;
+	pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+	.titleSwitcherWrapper {
+		bottom: 0;
+		left: 0;
+	}
 }

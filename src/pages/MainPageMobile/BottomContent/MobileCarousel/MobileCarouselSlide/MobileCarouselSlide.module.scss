@@ -1,0 +1,31 @@
+@use '../../../../../constants/styles' as *;
+
+.slideContent {
+	max-width: 166px;
+	min-height: 114px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	overflow: hidden;
+}
+
+.name {
+	font-family: 'Bebas Neue', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 120%;
+	color: $color-text-accent;
+}
+
+.description {
+	font-family: 'PT Sans', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 145%;
+	color: $color-text-primary;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

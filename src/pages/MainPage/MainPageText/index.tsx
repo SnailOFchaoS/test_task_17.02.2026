@@ -1,6 +1,6 @@
 import MainPageStaticText from './MainPageStaticText';
 import MainPageDynamicText from './MainPageDynamicText';
-import TitleSwitcher from './TitleSwitcher';
+import { TitleSwitcher } from '../../../components';
 
 import styles from './MainPageText.module.scss';
 
@@ -9,7 +9,9 @@ const MainPageText = () => {
 		<div className={styles.container}>
 			<MainPageStaticText />
 			<MainPageDynamicText />
-			<TitleSwitcher />
+			<div className={styles.titleSwitcherWrapper}>
+				<TitleSwitcher />
+			</div>
 		</div>
 	);
 }
