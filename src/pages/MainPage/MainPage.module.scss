@@ -6,7 +6,9 @@
 	grid-template-columns: repeat(24, 1fr);
 	gap: 0;
 	width: 100%;
-	min-height: 100vh;
+	height: 100vh;
+	max-height: 100dvh;
+	overflow: hidden;
 	background-color: $color-bg-page;
 
 	.backgroundImage {

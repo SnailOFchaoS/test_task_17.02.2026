@@ -4,7 +4,7 @@
 	display: inline-block;
 	position: relative;
 	width: 1ch;
-	height: 160px * 0.67;
+	@include scaled(height, 160px);
 	vertical-align: top;
 	overflow: hidden;
 
@@ -14,15 +14,15 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		font-size: 200px * 0.67;
+		@include scaled(font-size, 200px);
 		font-weight: 700;
 		letter-spacing: -2%;
-		line-height: 160px * 0.67;
+		@include scaled(line-height, 160px);
 		font-family: 'PT Sans', sans-serif;
 	}
 
 	.chosenLetter {
-		top: -340px * 0.67;
+		@include scaled(top, -340px);
 	}
 	
 	.letter.firstDate, .chosenLetter.firstDate {

@@ -8,6 +8,7 @@ import { ClickableButton } from '../../../components';
 import { HISTORICAL_EVENTS } from '../../../constants';
 import buttonBlue from '../../../assets/buttonBlue.svg';
 import { useAppContext } from '../../../store';
+import { useLaptopScale } from '../../../hooks';
 import CarouselSlide from './CarouselSlide';
 
 import styles from './MainPageCarousel.module.scss';
@@ -16,6 +17,7 @@ type CarouselEvent = (typeof HISTORICAL_EVENTS)[number]['events'][number];
 
 const MainPageCarousel = () => {
 	const { selectedDot } = useAppContext();
+	const scale = useLaptopScale();
 	const [displayedDot, setDisplayedDot] = useState(selectedDot);
 	const currentEventsRef = useRef<CarouselEvent[]>([]);
 	const justCompletedExitRef = useRef(false);
@@ -88,7 +90,7 @@ const MainPageCarousel = () => {
 							onClick={() => swiperRef.current?.slidePrev()} 
 							direction="prev" 
 							ariaLabel="Previous"
-							size={40 * 0.67}
+							size={40 * scale}
 							className={styles.carouselNavButton}
 							iconSrc={buttonBlue}
 						/>
@@ -102,7 +104,7 @@ const MainPageCarousel = () => {
 							onClick={() => swiperRef.current?.slideNext()} 
 							direction="next" 
 							ariaLabel="Next"
-							size={40 * 0.67}
+							size={40 * scale}
 							className={styles.carouselNavButton}
 							iconSrc={buttonBlue}
 						/>
@@ -114,7 +116,7 @@ const MainPageCarousel = () => {
 				className={styles.swiper}
 				slidesPerView={3}
 				slidesPerGroup={1}
-				spaceBetween={80 * 0.67}
+				spaceBetween={80 * scale}
 				onSwiper={setSwiperRef}
 				onSlideChange={handleSlideChange}
 				loop={false}

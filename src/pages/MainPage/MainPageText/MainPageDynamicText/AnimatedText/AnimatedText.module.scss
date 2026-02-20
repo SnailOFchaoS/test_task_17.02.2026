@@ -1,20 +1,23 @@
+@use '../../../../../constants/styles' as *;
+
 .container {
 	display: flex;
 	flex-direction: row;
-	margin-left: 137px * 0.67;
+	
+	@include scaled(margin-left, 217px);
 
 	.animatedTextLine {
 		display: block;
-		max-height: 160px * 0.67;
+		@include scaled(max-height, 160px);
 		overflow: hidden;
 	}
 
 	.space {
 		display: inline-block;
-		font-size: 200px * 0.67;
+		@include scaled(font-size, 200px);
 		font-weight: 700;
 		letter-spacing: -2%;
-		line-height: 160px * 0.67;
+		@include scaled(line-height, 160px);
 		font-family: 'PT Sans', sans-serif;
 		width: 1ch;
 	}
