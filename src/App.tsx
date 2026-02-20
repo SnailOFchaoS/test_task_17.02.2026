@@ -1,10 +1,13 @@
 import { AppProvider } from './store';
-import { MainPage } from './pages';
+import { MainPage, MainPageMobile } from './pages';
+import { useIsMobileVersion } from './hooks';
 
 function App() {
+  const isMobileVersion = useIsMobileVersion();
+
   return (
     <AppProvider>
-      <MainPage />
+      {isMobileVersion ? <MainPageMobile /> : <MainPage />}
     </AppProvider>
   );
 }

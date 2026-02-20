@@ -1,0 +1,22 @@
+.container {
+	width: 100%;
+	overflow: hidden;
+
+	.swiper {
+		width: 100%;
+		overflow: hidden;
+		.slide {
+			width: 166px;
+			height: auto;
+			display: flex;
+			align-items: stretch;
+			flex-shrink: 0;
+			opacity: 0.4;
+		}
+		
+		.slideActive {
+			opacity: 1;
+		}
+		
+	}
+}

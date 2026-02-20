@@ -11,9 +11,8 @@ import { useAppContext } from '../../../store';
 import { useLaptopScale } from '../../../hooks';
 import CarouselSlide from './CarouselSlide';
 
+import type { CarouselEvent } from './types';
 import styles from './MainPageCarousel.module.scss';
-
-type CarouselEvent = (typeof HISTORICAL_EVENTS)[number]['events'][number];
 
 const MainPageCarousel = () => {
 	const { selectedDot } = useAppContext();

@@ -1,18 +1,10 @@
-import type { RefObject } from 'react';
-
 import AnimatedLetter from '../AnimatedLetter';
 
+import type { AnimatedDatePartProps } from './types';
 import styles from './AnimatedDatePart.module.scss';
 
 const STAGGER_SEC = 0.1;
 const ANIM_DURATION_SEC = 1;
-
-type AnimatedDatePartProps = {
-	selectedDate: string;
-	currentDate: string;
-	isFirstDate?: boolean;
-	durationRef: RefObject<number>;
-};
 
 const AnimatedDatePart = ({
 	selectedDate,

@@ -2,37 +2,30 @@ import { useCallback, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
 import buttonSvg from '../../assets/button.svg';
+import { useIsMobileVersion } from '../../hooks';
 
+import type { ClickableButtonProps } from './types';
 import styles from './ClickableButton.module.scss';
 
 const DEFAULT_SIZE = 50;
-
-type ClickableButtonProps = {
-	onClick: () => void;
-	disabled?: boolean;
-	direction: 'prev' | 'next';
-	ariaLabel?: string;
-	size?: number;
-	className?: string;
-	style?: React.CSSProperties;
-	iconSrc?: string;
-};
 
 const ClickableButton = ({ onClick, disabled, direction, ariaLabel, size = DEFAULT_SIZE, className, style, iconSrc }: ClickableButtonProps) => {
 	const iconClassName = direction === 'next' ? styles.iconNext : styles.icon;
 	const sizePx = `${size}px`;
 	const buttonTimelineRef = useRef<gsap.core.Timeline | null>(null);
 	const buttonRef = useRef<HTMLButtonElement>(null);
+	const isMobileVersion = useIsMobileVersion();
 
 	const handleMouseEnter = useCallback(() => {
-		if(disabled) return;
+		if(disabled || isMobileVersion) return;
 
 		buttonTimelineRef.current?.play();
-	}, [disabled]);
+	}, [disabled, isMobileVersion]);
 
 	const handleMouseLeave = useCallback(() => {
+		if(isMobileVersion) return;
 		buttonTimelineRef.current?.reverse();
-	}, []);
+	}, [isMobileVersion]);
 
 	useEffect(() => {
 		const button = buttonRef.current;
@@ -59,7 +52,7 @@ const ClickableButton = ({ onClick, disabled, direction, ariaLabel, size = DEFAU
 			aria-label={ariaLabel}
 			onMouseEnter={handleMouseEnter}
 			onMouseLeave={handleMouseLeave}
-			style={{ '--button-size': sizePx, ...style } as React.CSSProperties}
+			style={{ '--button-size': sizePx, ...style } as React.CSSProperties & { '--button-size': string }}
 		>
 			<img src={iconSrc ?? buttonSvg} alt="" className={iconClassName} />
 		</button>

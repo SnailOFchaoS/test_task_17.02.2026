@@ -1,24 +1,21 @@
 import { useRef, useLayoutEffect, useEffect } from 'react';
 import gsap from 'gsap';
 
-import { useLaptopScale } from '../../../../../../hooks';
+import { useLaptopScale, useIsMobileVersion } from '../../../hooks';
 
+import type { AnimatedLetterProps } from './types';
 import styles from './AnimatedLetter.module.scss';
-
-type AnimatedLetterProps = {
-	currentLetter: string;
-	chosenLetter: string;
-	isFirstDate?: boolean;
-	delay?: number | null;
-}
 
 const AnimatedLetter = ({ currentLetter, chosenLetter, isFirstDate, delay }: AnimatedLetterProps) => {
 	const letterTimeline = useRef<gsap.core.Timeline | null>(null);
 	const letterRef = useRef<HTMLDivElement>(null);
 	const chosenLetterRef = useRef<HTMLDivElement>(null);
 	const scale = useLaptopScale();
+	const isMobileVersion = useIsMobileVersion();
 
-	const offsetY = 160 * scale;
+	console.log(isMobileVersion);
+
+	const offsetY = isMobileVersion ? 72 : 160 * scale;
 	const startTime = delay ?? 0;
 
 	useLayoutEffect(() => {
@@ -28,13 +25,13 @@ const AnimatedLetter = ({ currentLetter, chosenLetter, isFirstDate, delay }: Ani
 			.timeline({ paused: true })
 			.fromTo(
 				letterRef.current,
-				{y: 0},
+				{ y: 0 },
 				{ y: offsetY, duration: 1, ease: 'power2.inOut' },
 				startTime
 			)
 			.fromTo(
 				chosenLetterRef.current,
-				{y: -offsetY},
+				{ y: -offsetY },
 				{ y: offsetY, duration: 1, ease: 'power2.inOut' },
 				startTime
 			);
@@ -42,7 +39,7 @@ const AnimatedLetter = ({ currentLetter, chosenLetter, isFirstDate, delay }: Ani
 		return () => {
 			letterTimeline.current?.kill();
 		};
-	}, [startTime]);
+	}, [startTime, offsetY]);
 
 	useEffect(() => {
 		if (!letterTimeline.current) return;
@@ -56,20 +53,20 @@ const AnimatedLetter = ({ currentLetter, chosenLetter, isFirstDate, delay }: Ani
 
 	return (
 		<div className={`${styles.container}`}>
-			<div 
-				ref={letterRef} 
+			<div
+				ref={letterRef}
 				className={`${styles.letter}  ${isFirstDate ? styles.firstDate : styles.secondDate}`}
 			>
 				{currentLetter}
 			</div>
-			<div 
-				ref={chosenLetterRef} 
+			<div
+				ref={chosenLetterRef}
 				className={`${styles.chosenLetter}  ${isFirstDate ? styles.firstDate : styles.secondDate}`}
 			>
 				{chosenLetter}
 			</div>
 		</div>
-	)
-}
+	);
+};
 
 export default AnimatedLetter;

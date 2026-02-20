@@ -1,13 +1,13 @@
 import type { HistoricalEvent } from './types';
-import styles from './CarouselSlide.module.scss';
+import styles from './MobileCarouselSlide.module.scss';
 
-const CarouselSlide = ({ event }: { event: HistoricalEvent }) => {
+const MobileCarouselSlide = ({ event }: { event: HistoricalEvent }) => {
 	return (
 		<div className={styles.slideContent}>
 			<div className={styles.name}>{event.name}</div>
 			<div className={styles.description}>{event.description}</div>
 		</div>
-	)
-}
+	);
+};
 
-export default CarouselSlide;
+export default MobileCarouselSlide;

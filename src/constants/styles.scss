@@ -14,6 +14,8 @@ $color-shadow-accent: rgba(56, 119, 238, 0.1);
 $color-date-first: rgba(93, 95, 239, 1);
 $color-date-second: rgba(239, 93, 168, 1);
 
+$color-mobile-border-light: rgba(199, 205, 217, 1);
+
 @mixin scaled($property, $value, $scale: 0.67) {
 	#{$property}: $value * $scale;
 	@media (min-width: 1440px) and (max-width: 1919px) {
