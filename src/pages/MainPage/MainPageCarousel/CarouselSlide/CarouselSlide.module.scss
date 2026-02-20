@@ -1,10 +1,10 @@
 @use '../../../../constants/styles' as *;
 
 .slideContent {
-	min-width: 320px * 0.67;
-	max-width: 400px * 0.67;
-	max-height: 135px * 0.67;
-	gap: 15px * 0.67;
+	@include scaled(min-width, 320px);
+	@include scaled(max-width, 400px);
+	@include scaled(max-height, 135px);
+	@include scaled(gap, 15px);
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -12,7 +12,7 @@
 
 .name {
 	font-family: 'Bebas Neue', sans-serif;
-	font-size: 25px * 0.67;
+	@include scaled(font-size, 25px);
 	font-weight: 400;
 	color: $color-text-accent;
 	cursor: inherit;
@@ -20,10 +20,10 @@
 
 .description {
 	font-family: 'PT Sans', sans-serif;
-	font-size: 20px * 0.67;
+	@include scaled(font-size, 20px);
 	font-weight: 400;
 	color: $color-text-primary;
-	max-height: 135px * 0.67;
+	@include scaled(max-height, 135px);
 	overflow: hidden;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;

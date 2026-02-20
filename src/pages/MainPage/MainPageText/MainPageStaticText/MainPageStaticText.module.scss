@@ -4,18 +4,18 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	max-width: 431px * 0.67;
-	margin-top: 170px * 0.67;
+	@include scaled(max-width, 431px); 
+	@include scaled(margin-top, 170px);
 
 	.coloredLine {
-		width: 5px * 0.67;
-		height: 120px * 0.67;
+		@include scaled(width, 5px);
+		@include scaled(height, 120px);
 		background: linear-gradient(to bottom, $color-accent-hex -10%, $color-accent-pink 90%);
-		margin-right: 73px * 0.67;
+		@include scaled(margin-right, 73px);
 	}
 
 	.staticText {
-		font-size: 56px * 0.67;
+		@include scaled(font-size, 56px);
 		font-weight: 700;
 		line-height: 120%;
 		color: $color-text-primary;

@@ -2,34 +2,40 @@
 
 .container {
 	position: absolute;
-	top: 841px * 0.67;
-	left: 80px * 0.67;
+	@include scaled(bottom, 104px);
+	@include scaled(left, 80px);
 	z-index: 4;
-	width: 1200px * 0.67;
-	max-width: calc(100vw - 80px * 0.67 * 2);
+	@include scaled(width, 1200px);
+	max-width: calc(100vw - 80px * 2);
+	@media (max-width: 1440px) {
+		max-width: calc(100vw - 80px * 0.67 * 2);
+	}
 
 	.carouselNavButton {
 		background-color: $color-white;
 		border-radius: 50%;
 		box-shadow: 0 0 15px 0 $color-shadow-accent;
+		@media (max-width: 1440px) {
+			box-shadow: 0 0 15px * 0.67 0 $color-shadow-accent;
+		}
 	}
 
 	.buttonContainerPrev {
 		position: absolute;
-		top: 41px * 0.67;
-		left: -60px * 0.67;
+		@include scaled(top, 41px);
+		@include scaled(left, -60px);
 	}
 
 	.buttonContainerNext {
 		position: absolute;
-		top: 41px * 0.67;
-		left: 1280px * 0.67;
+		@include scaled(top, 41px);
+		@include scaled(left, 1280px);
 	}
 }
 
 .swiper {
 	width: 100%;
-	height: 135px * 0.67;
+	@include scaled(height, 135px);
 }
 
 

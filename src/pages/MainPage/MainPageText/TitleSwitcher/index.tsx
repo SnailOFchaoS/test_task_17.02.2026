@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-import { useAppContext } from '../../../../../store';
-import { TITLES, formatTitleNumber } from '../../../../../constants';
-import { useDebounce } from '../../../../../hooks';
-import { ClickableButton } from '../../../../../components';
+import { useAppContext } from '../../../../store';
+import { TITLES, formatTitleNumber } from '../../../../constants';
+import { useDebounce, useLaptopScale } from '../../../../hooks';
+import { ClickableButton } from '../../../../components';
 
 import styles from './TitleSwitcher.module.scss';
 
@@ -11,6 +11,9 @@ const TOTAL = TITLES.length;
 
 const TitleSwitcher = () => {
 	const { selectedDot, setSelectedDot } = useAppContext();
+	const scale = useLaptopScale();
+
+	console.log(scale);
 
 	const currentTitleNumber = formatTitleNumber(
 		TITLES.find((title) => title.id === selectedDot)?.number
@@ -40,14 +43,14 @@ const TitleSwitcher = () => {
 					disabled={selectedDot === 0}
 					direction="prev"
 					ariaLabel="Предыдущий"
-					size={50 * 0.67}
+					size={50 * scale}
 				/>
 				<ClickableButton
 					onClick={debounsedGoNext}
 					disabled={selectedDot === TOTAL - 1}
 					direction="next"
 					ariaLabel="Следующий"
-					size={50 * 0.67}
+					size={50 * scale}
 				/>
 			</div>
 		</div>

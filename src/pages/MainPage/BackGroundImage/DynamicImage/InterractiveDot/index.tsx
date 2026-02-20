@@ -2,7 +2,8 @@ import { useMemo, useRef, useCallback, useEffect } from 'react';
 import gsap from 'gsap';
 
 import { useAppContext } from '../../../../../store';
-import { RADIUS, SCALE_CLOSED, CONTENT_OFFSET_X, TITLES } from '../../../../../constants';
+import { useLaptopScale } from '../../../../../hooks';
+import { RADIUS_BASE, SCALE_CLOSED, CONTENT_OFFSET_X_BASE, TITLES } from '../../../../../constants';
 
 import styles from './InterractiveDot.module.scss';
 
@@ -13,6 +14,7 @@ type InterractiveDotProps = {
 
 const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 	const { selectedDot, setSelectedDot } = useAppContext();
+	const scale = useLaptopScale();
 	const rotationWrapperRef = useRef<HTMLDivElement>(null);
 	const dotRef = useRef<HTMLDivElement>(null);
 	const contentRef = useRef<HTMLDivElement>(null);
@@ -26,8 +28,8 @@ const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 	const [x, y] = useMemo(() => {
 		const angleDeg = (index ?? 0) * 60;
 		const rad = (angleDeg * Math.PI) / 180;
-		const cx = RADIUS * Math.cos(rad);
-		const cy = RADIUS * Math.sin(rad);
+		const cx = RADIUS_BASE * scale * Math.cos(rad);
+		const cy = RADIUS_BASE * scale * Math.sin(rad);
 		return [Math.round(cx), Math.round(cy)];
 	}, [index]);
 
@@ -72,7 +74,7 @@ const InterractiveDot = ({ title, wheelRotationRef }: InterractiveDotProps) => {
 			}, {
 				opacity: 1,
 				duration: 0.5,
-				transform: `translateX(${CONTENT_OFFSET_X}px)`,
+				transform: `translateX(${CONTENT_OFFSET_X_BASE * scale}px)`,
 				ease: 'power2.inOut'
 			}, 0);
 

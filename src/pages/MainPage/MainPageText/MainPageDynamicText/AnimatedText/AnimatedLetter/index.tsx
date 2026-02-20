@@ -1,6 +1,8 @@
 import { useRef, useLayoutEffect, useEffect } from 'react';
 import gsap from 'gsap';
 
+import { useLaptopScale } from '../../../../../../hooks';
+
 import styles from './AnimatedLetter.module.scss';
 
 type AnimatedLetterProps = {
@@ -14,8 +16,9 @@ const AnimatedLetter = ({ currentLetter, chosenLetter, isFirstDate, delay }: Ani
 	const letterTimeline = useRef<gsap.core.Timeline | null>(null);
 	const letterRef = useRef<HTMLDivElement>(null);
 	const chosenLetterRef = useRef<HTMLDivElement>(null);
+	const scale = useLaptopScale();
 
-	const offsetY = 160 * 0.67;
+	const offsetY = 160 * scale;
 	const startTime = delay ?? 0;
 
 	useLayoutEffect(() => {

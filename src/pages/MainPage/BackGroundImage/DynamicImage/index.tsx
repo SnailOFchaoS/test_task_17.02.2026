@@ -20,9 +20,9 @@ const DynamicImage = () => {
 	const runSpinRef = useRef<() => void>(() => {});
 
 	runSpinRef.current = () => {
-		const el = circleRef.current;
-		if (!el) return;
-		spinAnimationRef.current = gsap.to(el, {
+		if (!circleRef.current) return;
+
+		spinAnimationRef.current = gsap.to(circleRef.current, {
 			rotation: '+=360',
 			duration: SPIN_DURATION,
 			ease: 'linear',
@@ -76,6 +76,7 @@ const DynamicImage = () => {
 				runSpinRef.current()
 			},
 		});
+
 		return () => {
 			scrollTween.kill();
 		};

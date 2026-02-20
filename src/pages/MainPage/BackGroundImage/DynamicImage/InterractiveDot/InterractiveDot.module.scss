@@ -3,15 +3,12 @@
 $dot-color: $color-text-primary;
 $dot-background-color: $color-bg-page;
 
-$dot-size-small: 6px * 0.67;
-$dot-size-large: 56px * 0.67;
-
 .container {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	width: $dot-size-large;
-	height: $dot-size-large;
+	@include scaled(width, 56px);
+	@include scaled(height, 56px);
 	cursor: pointer;
 }
 
@@ -39,8 +36,8 @@ $dot-size-large: 56px * 0.67;
 			position: absolute;
 			inset: 0;
 			margin: auto;
-			width: 54px * 0.67;
-			height: 54px * 0.67;
+			@include scaled(width, 54px);
+			@include scaled(height, 54px);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -48,7 +45,7 @@ $dot-size-large: 56px * 0.67;
 			transform: scale(0);
 			white-space: nowrap;
 			pointer-events: none;
-			font-size: 20px * 0.67;
+			@include scaled(font-size, 20px);
 			font-family: 'PT Sans', sans-serif;
 			color: $dot-color;
 			background-color: $dot-background-color;
@@ -59,7 +56,7 @@ $dot-size-large: 56px * 0.67;
 	
 	.dotName {
 		position: absolute;
-		font-size: 20px * 0.67;
+		@include scaled(font-size, 20px);
 		color: $dot-color;
 		font-weight: 700;
 		pointer-events: none;

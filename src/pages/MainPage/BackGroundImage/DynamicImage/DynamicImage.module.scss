@@ -2,7 +2,6 @@
 
 .container {
 	position: absolute;
-	top: 0;
 	left: 0;
 	z-index: 3;
 	top: 44.4%;
@@ -13,8 +12,8 @@
 		box-shadow: 0 0 0 1px $color-border;
 		border-radius: 50%;
  
-		width: 530px * 0.67;
-		height: 530px * 0.67;
+		@include scaled(width, 530px);
+		@include scaled(height, 530px);
 		transform: translate(-50%, -50%);
 	}
-}
+}	
